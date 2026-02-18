@@ -7,7 +7,7 @@
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
   <title>@yield('title', 'Online Store')</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
         <div class="container">
@@ -22,6 +22,7 @@
                     <a class="nav-link active" href="{{ route('home.about') }}">About</a>
                     <a class="nav-link active" href="{{ route('home.contact') }}">Contact</a>
                     <a class="nav-link active" href="{{ route('product.index') }}">Product</a>
+                    <a class="nav-link active" href="{{ route('product.create') }}">CreateProduct</a>
                 </div>
             </div>
         </div>
@@ -34,7 +35,7 @@
     </header>
     <!-- header -->
 
-    <div class="container my-4">
+    <div class="container my-4 flex-fill">
         @yield('content')
     </div>
 
