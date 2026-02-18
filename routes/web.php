@@ -14,7 +14,9 @@ Route::get('/about', function () {
       ->with("description", $description)
       ->with("author", $author);
 })->name("home.about");
+# Register route for contact View
 
+Route::get('/contact', 'App\Http\Controllers\ContactController@index')->name("home.contact");
 # Register route for Product View 
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name("product.index");
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')

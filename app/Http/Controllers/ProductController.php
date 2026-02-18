@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
+use Illuminate\Http\RedirectResponse;
 class ProductController extends Controller
 {
     public static $products = [
-        ["id"=>"1", "name"=>"TV", "description"=>"Best TV"],
-        ["id"=>"2", "name"=>"iPhone", "description"=>"Best iPhone"],
-        ["id"=>"3", "name"=>"Chromecast", "description"=>"Best Chromecast"],
-        ["id"=>"4", "name"=>"Glasses", "description"=>"Best Glasses"]
+        ["id"=>"1", "name"=>"TV", "description"=>"Best TV", "price"=>"200"],
+        ["id"=>"2", "name"=>"iPhone", "description"=>"Best iPhone","price"=>"800"],
+        ["id"=>"3", "name"=>"Chromecast", "description"=>"Best Chromecast","price"=>"100"],
+        ["id"=>"4", "name"=>"Glasses", "description"=>"Best Glasses","price"=>"50"]
     ];
 
     public function index(): View
@@ -23,8 +23,12 @@ class ProductController extends Controller
         return view('product.index')->with("viewData", $viewData);
     }
 
-    public function show(string $id) : View
+    public function show(string $id) : View | RedirectResponse
     {
+        $numberOfProducts = count(ProductController::$products); 
+        if ($id > $numberOfProducts){
+            return redirect()->route('home.index');
+        }
         $viewData = [];
         $product = ProductController::$products[$id-1];
         $viewData["title"] = $product["name"]." - Online Store";
