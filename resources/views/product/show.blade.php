@@ -17,6 +17,10 @@
         @else 
           <p class="card-text text-danger">{{ $viewData["product"]["price"]}}</p>
         @endif
+
+        @foreach($viewData["product"]->comments as $comment)
+          - {{ $comment->getDescription() }}<br />
+        @endforeach
       </div>
     </div>
   </div>
