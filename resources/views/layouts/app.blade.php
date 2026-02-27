@@ -12,17 +12,46 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home.index') }}">Online Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"      data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
-                    <a class="nav-link active" href="{{ route('home.about') }}">About</a>
-                    <a class="nav-link active" href="{{ route('home.contact') }}">Contact</a>
-                    <a class="nav-link active" href="{{ route('product.index') }}">Product</a>
-                    <a class="nav-link active" href="{{ route('product.create') }}">CreateProduct</a>
+
+                    
+                    <a class="nav-link" href="{{ route('home.index') }}">Home</a>
+                    <a class="nav-link" href="{{ route('home.about') }}">About</a>
+                    <a class="nav-link" href="{{ route('home.contact') }}">Contact</a>
+                    <a class="nav-link" href="{{ route('product.index') }}">Product</a>
+
+                    <div class="vr bg-white mx-2 d-none d-lg-block"></div>
+
+                    
+                    @guest
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    @endguest
+
+                    
+                    @auth
+                        <a class="nav-link" href="{{ route('product.create') }}">Create Product</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <a role="button" class="nav-link"
+                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                        </form>
+                    @endauth
+
                 </div>
             </div>
         </div>
