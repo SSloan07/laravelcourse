@@ -22,4 +22,8 @@ Route::get('/v2/products/{id}', 'App\Http\Controllers\Api\ProductApiControllerV2
 Route::get('/v3/products', 'App\Http\Controllers\Api\ProductApiControllerV3@index')->name('api.v3.product.index');
 Route::get('/v3/products/paginate', 'App\Http\Controllers\Api\ProductApiControllerV3@paginate')->name('api.v3.product.paginate');
 
-// Here we don't have a {id} for each product, which is initially different
+/* Here we don't have a {id} for each product, which is initially different. 
+Additionally here the API Rest using POST 
+*/ 
+
+Route::post('v3/products/store', 'App\Http\Controllers\Api\ProductApiControllerV3@store')->name('api.v3.product.store'); 
